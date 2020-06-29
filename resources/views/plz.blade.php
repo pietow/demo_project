@@ -64,6 +64,14 @@
         </style>
     </head>
     <body>
-        <p>PLZ</p>
-    </body>
+    <h1>Kalenderübersicht</h1>
+    <div>
+        <h2>Anstehende Termine für Heute</h2>
+        <ul>
+            <li>1.1.2019 - Neujahr feiern</li>
+            <li>5.2.2019 - Geburtstag feiern</li>
+        </ul>
+    </div>
+</body>
+    
 </html>

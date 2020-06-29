@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+#Route::get('/', function () {
+#    return view('welcome');
+#});
 
-Route::get('/demo', function () {
+Route::get('/', function () {
     return view('plz');
 });
 
+Route::get('/auto', 'AutohaendlerController@index');
 
