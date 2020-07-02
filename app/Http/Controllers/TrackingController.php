@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class TrackingController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class TrackingController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +24,7 @@ class TrackingController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -34,7 +35,13 @@ class TrackingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $anfrage = new \App\Tracking;
+        $anfrage->Name = $request->Name;
+        $anfrage->PLZ = $request->PLZ;
+        $PLZ = $anfrage->PLZ;
+        $anfrage->save();
+        return \redirect('auto/'.$PLZ)->with('status','Gespeichert');
+        
     }
 
     /**

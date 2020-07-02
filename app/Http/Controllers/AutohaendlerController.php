@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Autodealer;
 
 class AutohaendlerController extends Controller
 {
@@ -11,10 +12,11 @@ class AutohaendlerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Autodealer $autodealer)
     {
+        
         $dealer = \App\Autodealer::all();
-        return view('plz', array('ausgabe'=>$dealer));
+        #return view('plz', array('ausgabe'=>$dealer));
     }
 
     /**
@@ -24,7 +26,7 @@ class AutohaendlerController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -46,7 +48,17 @@ class AutohaendlerController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        #$dealer = \App\Autodealer::all();
+        
+        #$dealer1 = $dealer->where('plz_id',$id);
+        #echo ($dealer1->getFirstNameAttribute($id));
+        $dealer1 = new \App\Autodealer();
+       # $dealer = $dealer->getFirstNameAttribute($id);
+        $distance = $dealer1->getFirstNameAttribute($id);
+       # $data = array('ausgabe'=>$dealer);
+        return view('plz')->with('ausgabe', $distance);
+
     }
 
     /**

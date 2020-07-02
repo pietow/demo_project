@@ -14,11 +14,14 @@ class CreateAutodealersTable extends Migration
     public function up()
     {
         Schema::create('autodealers', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('plz_id')->unsigned();
+            $table->bigIncrements('id');
+            //connect to the plzs table via reference to plz table
+            $table->unsignedBigInteger('plz_id');
             $table->text("Händler");
 
-            $table->foreign('plz_id')->references('id')->on('plzs')->onDelete('cascade');          
+            //index for any foreign key
+            $table->index('plz_id');  
+            $table->timestamps();
         });
     }
 

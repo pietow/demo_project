@@ -14,10 +14,11 @@ class CreatePlzsTable extends Migration
     public function up()
     {
         Schema::create('plzs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->text("Ort");
             $table->decimal('Latitude', 10, 8);
             $table->decimal('Longitude', 11, 8);
+            $table->timestamps();
         });
     }
 
