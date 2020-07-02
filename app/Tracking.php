@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Autohandler extends Model
+class Tracking extends Model
 {
     //
 }

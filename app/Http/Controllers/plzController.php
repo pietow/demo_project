@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CalendarController extends Controller
+class plzController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        //
+        $plz_co = \App\plz::all();
+        return view('plz2', array('ausgabe'=>$plz_co));
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AutohaendlerController extends Controller
+class TrackingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class AutohaendlerController extends Controller
      */
     public function index()
     {
-        $dealer = \App\Autodealer::all();
-        return view('plz', array('ausgabe'=>$dealer));
+        //
     }
 
     /**

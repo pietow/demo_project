@@ -22,4 +22,6 @@ Route::get('/', function () {
 });
 
 Route::get('/auto', 'AutohaendlerController@index');
+Route::get('/auto2', 'plzController@index');
+
 

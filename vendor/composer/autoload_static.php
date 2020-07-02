@@ -475,10 +475,13 @@ class ComposerStaticInitec6e722a110359debc77185d54c69c71
     );
 
     public static $classMap = array (
-        'App\\Autohandler' => __DIR__ . '/../..' . '/app/Autohandler.php',
+        'App\\Autodealer' => __DIR__ . '/../..' . '/app/Autodealer.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AutohaendlerController' => __DIR__ . '/../..' . '/app/Http/Controllers/AutohaendlerController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\TrackingController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrackingController.php',
+        'App\\Http\\Controllers\\plzController' => __DIR__ . '/../..' . '/app/Http/Controllers/plzController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -493,7 +496,9 @@ class ComposerStaticInitec6e722a110359debc77185d54c69c71
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Tracking' => __DIR__ . '/../..' . '/app/Tracking.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\plz' => __DIR__ . '/../..' . '/app/plz.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
