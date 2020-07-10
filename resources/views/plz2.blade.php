@@ -69,7 +69,7 @@
         <h2>Anstehende Termine für Heute</h2>
         <ul>
             @foreach ($ausgabe as $dealer)
-                <li>{{$dealer->phone}}</li>
+                <li>{{$dealer}}</li>
                
             @endforeach
         </ul>

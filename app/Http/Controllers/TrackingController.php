@@ -35,6 +35,7 @@ class TrackingController extends Controller
      */
     public function store(Request $request)
     {
+        # Anfrage wird in Datenbank gespeichert
         $anfrage = new \App\Tracking;
         $anfrage->Name = $request->Name;
         $anfrage->PLZ = $request->PLZ;

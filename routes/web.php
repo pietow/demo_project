@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 #    return view('welcome');
 #});
 
-Route::get('/', function () {
-    return view('plz');
-});
 
-Route::get('/auto', 'AutohaendlerController@index');
+Route::get('/', function () {
+    return view('layout');
+});
+Route::get('/auto/create', 'TrackingController@create');
+Route::post('/auto/create', 'TrackingController@store');
 Route::get('/auto2', 'plzController@index');
+Route::get('/auto/{plz}', 'AutohaendlerController@show');
+
 
 

@@ -21,11 +21,10 @@ class Autodealer extends Model
         return $this->belongsTo(plz::class);
     }
 
-    public function getFirstNameAttribute($value)
+    public function getFirstNameAttribute($plz_user)
     {
-        $dealer = $this::with('plz')->get();;
-        $plz = plz::find($value);
-
+        
+        $plz = plz::find($plz_user);
         $ort_user_lat = $plz->Latitude;
         $ort_user_long = $plz->Longitude;
         $ort_user = new LatLong($ort_user_lat, $plz->Longitude);
@@ -34,12 +33,13 @@ class Autodealer extends Model
         $query = DB::table('autodealers')->selectRaw('plzs.Latitude, plzs.Longitude, autodealers.Händler, autodealers.plz_id')->join('plzs',
          'plzs.id', '=', 'autodealers.plz_id')->get();
 
-
-        $london = new LatLong(51.507608, -0.127822);
         $dealer_distance = [];
         
         foreach($query as $row){
 
+            if ($plz_user == $row->plz_id){
+                array_push($dealer_distance,['distance' => 5, 'dealer' => $row->Händler]);
+            } else {
             # Set our Lat/Long coordinates
             $ort_dealer = new LatLong($row->Latitude, $row->Longitude);
 
@@ -48,21 +48,14 @@ class Autodealer extends Model
             $distance = $distanceCalculator->get()->asKilometres();
 
             # formating
-            $distance = number_format($distance, 2, '.', '').' km';
-            array_push($dealer_distance,[$distance, $row->Händler]);
-            $newCollection = collect([$distance, $row->Händler]);
-            #dd($newCollection);
+            $distance = number_format($distance, 2, '.', '');
+            array_push($dealer_distance,['distance' => $distance, 'dealer' => $row->Händler]);
+            }
         }
-        #####convert  array of arrays to collection
+
+        # convert  array to collection
         $dealer_distance = collect($dealer_distance);
         return $dealer_distance;
        
-
-        
-
-    
-        
-        
-        
     }
 }

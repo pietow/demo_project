@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+
 
 use Illuminate\Http\Request;
 use App\Autodealer;
@@ -12,11 +15,9 @@ class AutohaendlerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Autodealer $autodealer)
+    public function index()
     {
-        
-        $dealer = \App\Autodealer::all();
-        #return view('plz', array('ausgabe'=>$dealer));
+        //
     }
 
     /**
@@ -48,16 +49,15 @@ class AutohaendlerController extends Controller
      */
     public function show($id)
     {
-        
-        #$dealer = \App\Autodealer::all();
-        
-        #$dealer1 = $dealer->where('plz_id',$id);
-        #echo ($dealer1->getFirstNameAttribute($id));
+        if (DB::table('plzs')->where('id', $id)->get()->isEmpty()) {
+            return 'Ungültige PLZ';
+        } else {
+        #create dummy object
         $dealer1 = new \App\Autodealer();
-       # $dealer = $dealer->getFirstNameAttribute($id);
-        $distance = $dealer1->getFirstNameAttribute($id);
-       # $data = array('ausgabe'=>$dealer);
+        #call objects distance method, sort and select 10 first items
+        $distance = $dealer1->getFirstNameAttribute($id)->sortBy('distance')->slice(0,10);
         return view('plz')->with('ausgabe', $distance);
+        }
 
     }
 
