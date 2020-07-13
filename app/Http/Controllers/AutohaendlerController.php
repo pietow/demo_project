@@ -55,7 +55,7 @@ class AutohaendlerController extends Controller
         #create dummy object
         $dealer1 = new \App\Autodealer();
         #call objects distance method, sort and select 10 first items
-        $distance = $dealer1->getFirstNameAttribute($id)->sortBy('distance')->slice(0,10);
+        $distance = $dealer1->get_distance($id)->sortBy('distance')->slice(0,10);
         return view('plz')->with('ausgabe', $distance);
         }
 

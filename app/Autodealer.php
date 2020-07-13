@@ -21,7 +21,7 @@ class Autodealer extends Model
         return $this->belongsTo(plz::class);
     }
 
-    public function getFirstNameAttribute($plz_user)
+    public function get_distance($plz_user)
     {
         
         $plz = plz::find($plz_user);
