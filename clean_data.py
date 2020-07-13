@@ -24,7 +24,6 @@ def get_index_street_first(list_, str_, i):
 name_list = []
 plz_list = []
 ort_list = []  
-i_list = []
 r = re.compile("\d{5}")
 for i, value in df_dealer.iteritems():
     new = value.split(' ')
@@ -33,28 +32,46 @@ for i, value in df_dealer.iteritems():
     plz_list.append(list(filter(r.match, new))[0])
     ort_list.append(new[-6])
     
-    i_list.append(get_index_street(new, 'Straße',i))
-    i_list.append(get_index_street(new, 'Str.', i))
-    i_list.append(get_index_street(new, 'Allee', i))
-    i_list.append(get_index_street(new, 'Weg', i))
-    i_list.append(get_index_street(new, 'Hämmern', i))
-    i_list.append(get_index_street(new, 'Damm', i))
-    i_list.append(get_index_street_first(new, 'str.', i))
-    i_list.append(get_index_street_first(new, 'ring', i))
-    i_list.append(get_index_street_first(new, 'weg', i))
-    i_list.append(get_index_street_first(new, 'haus', i))
-    i_list.append(get_index_street_first(new, 'feld', i))
-    i_list.append(get_index_street_first(new, 'heide', i))
-    i_list.append(get_index_street_first(new, '-Str.', i))
-    i_list.append(get_index_street_first(new, 'St.', i))
-    i_list.append(get_index_street_first(new, 'Boulevard', i))
-    i_list.append(get_index_street_first(new, 'Im', i))
-    i_list.append(get_index_street_first(new, 'Zum', i))
-    i_list.append(get_index_street_first(new, 'hof', i))
-    i_list.append(get_index_street_first(new, 'straße', i))
-
+dict_dealer = {'Autohaus': name_list, 'PLZ': plz_list}
 #list(filter(None, i_list)) 
-name_list, plz_list, ort_list
+df_dealer = pd.DataFrame(dict_dealer)
+df_dealer.to_csv('clean_bmw.csv', index=False)
+
+
+# %%
+df_plz = pd.read_csv("PLZ.csv", sep=';',names=['id', 'Ort', 'Longitude', 'Latitude'], header=None)
+
+def convert(place):
+    if 'Ã¼' in place:
+        conv_pla = list(map(lambda x: x if x != '¼' else 'ü', place))
+        return ''.join(conv_pla)
+    elif 'Ã¶' in place:
+        conv_pla = list(map(lambda x: x if x != '¶' else 'ö', place))
+        return ''.join(conv_pla)
+    elif 'ÃŸ' in place:
+        conv_pla = list(map(lambda x: x if x != 'Ÿ' else 'ß', place))
+        return ''.join(conv_pla)
+    elif 'Ã¤' in place:
+        conv_pla = list(map(lambda x: x if x != '¤' else 'ä', place))
+        return ''.join(conv_pla)
+    else:
+        return place
+
+def remove_A(place):
+    if 'Ã' in place:
+        conv_pla = list(map(lambda x: x, place))
+        conv_pla.pop(conv_pla.index('Ã'))
+        return ''.join(conv_pla)
+    else:
+        return ''.join(conv_pla)
+
+
+new = df_plz.Ort.str.replace('¼', 'ü')
+new = new.str.replace('¶', 'ö')
+new = new.str.replace('Ÿ', 'ß')
+new = new.str.replace('¤', 'ä')
+new = new.str.replace('Ã', '')
+df_plz['Ort'] = new
 
 
 # %%
