@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 #});
 
 
-Route::get('/', function () {
+Route::get('/layout', function () {
     return view('layout');
 });
-Route::get('/auto/create', 'TrackingController@create');
-Route::post('/auto/create', 'TrackingController@store');
-Route::get('/auto2', 'plzController@index');
-Route::get('/auto/{plz}', 'AutohaendlerController@show');
+Route::get('/', 'TrackingController@create');
+Route::post('/', 'TrackingController@store');
+#Route::get('/auto2', 'plzController@index');
+Route::get('/{plz}', 'AutohaendlerController@show');
 
 
 

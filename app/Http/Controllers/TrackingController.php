@@ -41,7 +41,7 @@ class TrackingController extends Controller
         $anfrage->PLZ = $request->PLZ;
         $PLZ = $anfrage->PLZ;
         $anfrage->save();
-        return \redirect('auto/'.$PLZ)->with('status','Gespeichert');
+        return \redirect('/'.$PLZ)->with('status','Gespeichert');
         
     }
 
