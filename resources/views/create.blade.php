@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="{{url('auto/create')}}" method="post">
+<form action="{{url('/')}}" method="post">
     @csrf
     <div class="form-group">
         <label for="Name">Name</label>
