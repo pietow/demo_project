@@ -30,7 +30,7 @@ class Autodealer extends Model
         $ort_user = new LatLong($ort_user_lat, $plz->Longitude);
          
         # SQL query
-        $query = DB::table('autodealers')->selectRaw('plzs.Latitude, plzs.Longitude, autodealers.Händler, autodealers.plz_id')->join('plzs',
+        $query = DB::table('autodealers')->selectRaw('plzs.Ort, plzs.Latitude, plzs.Longitude, autodealers.Händler, autodealers.plz_id')->join('plzs',
          'plzs.id', '=', 'autodealers.plz_id')->get();
 
         $dealer_distance = [];
@@ -38,7 +38,7 @@ class Autodealer extends Model
         foreach($query as $row){
 
             if ($plz_user == $row->plz_id){
-                array_push($dealer_distance,['distance' => 5, 'dealer' => $row->Händler]);
+                array_push($dealer_distance,['distance' => 5, 'dealer' => $row->Händler, 'ort' => $row->Ort]);
             } else {
             # Set our Lat/Long coordinates
             $ort_dealer = new LatLong($row->Latitude, $row->Longitude);
@@ -49,7 +49,7 @@ class Autodealer extends Model
 
             # formating
             $distance = number_format($distance, 2, '.', '');
-            array_push($dealer_distance,['distance' => $distance, 'dealer' => $row->Händler]);
+            array_push($dealer_distance,['distance' => $distance, 'dealer' => $row->Händler, 'ort' => $row->Ort]);
             }
         }
 
